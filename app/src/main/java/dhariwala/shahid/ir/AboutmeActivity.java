@@ -1,6 +1,8 @@
 package dhariwala.shahid.ir;
 
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,8 @@ public class AboutmeActivity extends AppCompatActivity {
         TextView2 = (TextView) findViewById(R.id.textView2);
         TextView3 = (TextView) findViewById(R.id.textView3);
         btn = (Button) findViewById(R.id.button1);
+        @Override
+
         final Intent i = new Intent(this,MainActivity.class);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
