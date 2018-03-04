@@ -15,13 +15,15 @@ import com.amazonaws.services.rekognition.model.Label;
 
 import java.util.List;
 
+import static dhariwala.shahid.ir.Util.*;
+
 public class UploadActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private ImageView imgPreview;
     private TextView resultTextView;
     private TextView resultTextView2;
-    private String refImagePath = "/storage/emulated/0/ProjectExpImageGallery/sid.jpg";
+    private String refImagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class UploadActivity extends AppCompatActivity {
         if (filePath != null) {
             // Displaying the image or video on the screen
             imgPreview.setVisibility(View.VISIBLE);
-            Util.setImage(filePath, imgPreview);
+            setImage(filePath, imgPreview);
             new CompareFaces().execute(filePath);
            new detectLabels().execute(filePath);
 
@@ -66,7 +68,7 @@ public class UploadActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Label> result) {
-            Util.setTextViewLabels(result, resultTextView);
+            setTextViewLabels(result, resultTextView);
         }
     }
 
@@ -89,12 +91,22 @@ public class UploadActivity extends AppCompatActivity {
 
         @Override
         protected List<CompareFacesMatch> doInBackground(String... strings) {
-            return AwsUtil.compareFace(refImagePath,strings[0]);
+
+            List<String> files = getFiles(Constants.databaseFolder);
+
+            for(String file:files){
+                List<CompareFacesMatch> result = AwsUtil.compareFace(file, strings[0]);
+                if(result!=null && !result.isEmpty()){
+                    return  result;
+                }
+            }
+
+            return null;
         }
 
         @Override
         protected void onPostExecute(List<CompareFacesMatch> result2) {
-            Util.setTextViewFacesCompare(result2, resultTextView2);
+            setTextViewFacesCompare(result2, resultTextView2);
         }
 
     }

@@ -2,6 +2,7 @@ package dhariwala.shahid.ir;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import com.amazonaws.services.rekognition.model.FaceDetail;
 import com.amazonaws.services.rekognition.model.Label;
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -89,11 +92,6 @@ public class Util {
             }
 
         }
-
-
-
-
-
         if (resultTextView != null) {
             resultTextView.setText(sb.toString());
         }
@@ -101,5 +99,22 @@ public class Util {
         return sb.toString();
 
     }
+    //image list from criminal gallery
+    public static List<String> getFiles(String dirName)
+    {    List<String> f = new ArrayList<String>();// list of file paths
+
+        File file= new File(Environment.getExternalStorageDirectory(),dirName);
+        if (file.isDirectory())
+        {
+
+            File[] listFile = file.listFiles();
+            for (int i = 0; i < listFile.length; i++)
+            {
+                f.add(listFile[i].getAbsolutePath());
+            }
+        }
+        return f;
+    }
+
 
 }

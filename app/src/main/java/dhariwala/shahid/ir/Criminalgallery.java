@@ -34,7 +34,7 @@ public class Criminalgallery extends AppCompatActivity {
     }
     public void getFromSdcard()
     {
-        File file= new File(Environment.getExternalStorageDirectory(),"ProjectExpCriminalsGallery");
+        File file= new File(Environment.getExternalStorageDirectory(),Constants.databaseFolder);
         if (file.isDirectory())
         {
             listFile = file.listFiles();
@@ -77,7 +77,10 @@ public class Criminalgallery extends AppCompatActivity {
             }
 
 
-            Bitmap myBitmap = BitmapFactory.decodeFile(f.get(position));
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8;
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(f.get(position),options);
             holder.imageview.setImageBitmap(myBitmap);
             return convertView;
         }
