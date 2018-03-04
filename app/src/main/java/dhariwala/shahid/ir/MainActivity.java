@@ -144,8 +144,10 @@ public class MainActivity extends AppCompatActivity
             addCriminalImage();
         }
         else if (id == R.id.nav_criminalgallery) {
-
+            Intent startgallery = new Intent(this,Criminalgallery.class);
+            startActivity(startgallery);
         }
+
         else if (id == R.id.nav_tools) {
 
         }
@@ -192,7 +194,7 @@ public class MainActivity extends AppCompatActivity
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "IMG_" + timeStamp + ".jpg");
+                    + "IMG" + timeStamp + ".jpg");
         } else {
             return null;
         }
@@ -277,7 +279,7 @@ public class MainActivity extends AppCompatActivity
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "IMG_" + timeStamp + ".jpg");
+                    + "IMG" + timeStamp + ".jpg");
         } else {
             return null;
         }

@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UploadActivity" />
-        <activity android:name=".AboutmeActivity"></activity>
+        <activity android:name=".AboutmeActivity" />
+        <activity android:name=".Criminalgallery"></activity>
     </application>
 
 </manifest>

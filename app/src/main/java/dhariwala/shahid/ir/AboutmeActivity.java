@@ -25,7 +25,6 @@ public class AboutmeActivity extends AppCompatActivity {
         TextView2 = (TextView) findViewById(R.id.textView2);
         TextView3 = (TextView) findViewById(R.id.textView3);
         btn = (Button) findViewById(R.id.button1);
-        @Override
 
         final Intent i = new Intent(this,MainActivity.class);
         btn.setOnClickListener(new View.OnClickListener() {
