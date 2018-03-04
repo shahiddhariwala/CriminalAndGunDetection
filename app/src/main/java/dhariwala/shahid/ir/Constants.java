@@ -7,6 +7,6 @@ package dhariwala.shahid.ir;
 public interface Constants {
 
     String databaseFolder = "ProjectExpCriminalsGallery";
-
+    String comparedFolder = "ProjectComparedImageGallery";
 
 }

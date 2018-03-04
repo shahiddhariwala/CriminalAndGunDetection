@@ -149,6 +149,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         else if (id == R.id.nav_tools) {
+            Intent startTools = new Intent(this,Toolmenu.class);
+            startActivity(startTools);
 
         }
         else if (id == R.id.nav_share) {
@@ -262,7 +264,7 @@ public class MainActivity extends AppCompatActivity
     private static File getOutputMediaFile(int type) {
 
 
-        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() + "/ProjectExpImageGallery/");
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() + Constants.comparedFolder);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {

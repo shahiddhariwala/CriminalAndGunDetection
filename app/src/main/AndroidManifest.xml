@@ -9,13 +9,13 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/shahidmoji"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/shahidmoji"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme">
         android:hardwareAccelerated="false"
         android:largeHeap="true"
         <activity
@@ -30,7 +30,8 @@
         </activity>
         <activity android:name=".UploadActivity" />
         <activity android:name=".AboutmeActivity" />
-        <activity android:name=".Criminalgallery"></activity>
+        <activity android:name=".Criminalgallery" />
+        <activity android:name=".Toolmenu"></activity>
     </application>
 
 </manifest>
