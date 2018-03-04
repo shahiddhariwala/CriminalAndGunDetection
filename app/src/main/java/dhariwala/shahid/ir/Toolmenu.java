@@ -45,7 +45,7 @@ public class Toolmenu extends AppCompatActivity {
             {
                 listFile[i].delete();
             }
-                Toast.makeText(getApplicationContext(),"Images Successfully Deleted !!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Images Successfully Deleted !!",Toast.LENGTH_SHORT).show();
 
         }
     }
