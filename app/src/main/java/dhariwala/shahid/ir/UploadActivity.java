@@ -23,6 +23,7 @@ public class UploadActivity extends AppCompatActivity {
     private ImageView imgPreview;
     private TextView resultTextView;
     private TextView resultTextView2;
+    private ImageView imgResult;
     private String refImagePath;
 
     @Override
@@ -31,6 +32,7 @@ public class UploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload);
 
         imgPreview = (ImageView) findViewById(R.id.imgPreview);
+        imgResult = (ImageView) findViewById(R.id.imgResult);
         resultTextView = (TextView) findViewById(R.id.chargesText);
         resultTextView2 = (TextView) findViewById(R.id.chargesText2);
 
@@ -97,6 +99,7 @@ public class UploadActivity extends AppCompatActivity {
             for(String file:files){
                 List<CompareFacesMatch> result = AwsUtil.compareFace(file, strings[0]);
                 if(result!=null && !result.isEmpty()){
+                    refImagePath = file;
                     return  result;
                 }
             }
@@ -107,6 +110,11 @@ public class UploadActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<CompareFacesMatch> result2) {
             setTextViewFacesCompare(result2, resultTextView2);
+            if(result2!=null && !result2.isEmpty())
+            {
+                Util.setImage(refImagePath,imgResult);
+            }
+
         }
 
     }

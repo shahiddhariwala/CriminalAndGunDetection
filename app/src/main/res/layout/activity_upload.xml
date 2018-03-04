@@ -10,8 +10,8 @@
         android:id="@+id/imgPreview"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:visibility="gone"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:visibility="visible" />
 
 
         <TextView
@@ -25,10 +25,13 @@
             android:layout_height="wrap_content"
             android:text="" />
 
-
-
-
-
+    <ImageView
+        android:id="@+id/imgResult"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/view_background"
+        android:visibility="visible" />
 
 
 </LinearLayout>

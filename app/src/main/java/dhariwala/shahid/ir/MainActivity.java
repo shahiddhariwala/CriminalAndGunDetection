@@ -179,8 +179,9 @@ public class MainActivity extends AppCompatActivity
     }
     @Nullable
     private static File getOutputMediaFile2(int type) {
-        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() + "/ProjectExpCriminalsGallery/");
 
+
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() +"/"+ Constants.databaseFolder +"/");
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
@@ -264,7 +265,7 @@ public class MainActivity extends AppCompatActivity
     private static File getOutputMediaFile(int type) {
 
 
-        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() + Constants.comparedFolder);
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() +"/"+ Constants.comparedFolder +"/");
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
