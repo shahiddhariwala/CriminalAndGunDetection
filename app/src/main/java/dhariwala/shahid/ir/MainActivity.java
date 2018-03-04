@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity
 
     // Camera activity request codes
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
+    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE_DATABASE = 131;
     public static final int MEDIA_TYPE_IMAGE = 1;
     private Uri fileUri;
+    private Uri fileUriaci;
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -138,17 +140,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_addcriminal) {
+            addCriminalImage();
+        }
+        else if (id == R.id.nav_criminalgallery) {
 
-        } else if (id == R.id.nav_gallery) {
+        }
+        else if (id == R.id.nav_tools) {
 
-        } else if (id == R.id.nav_slideshow) {
+        }
+        else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_aboutme) {
+        }
+        else if (id == R.id.nav_aboutme) {
             final Intent abtme = new Intent(this,AboutmeActivity.class);
             startActivity(abtme);
 
@@ -158,7 +162,45 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+//adding criminals  image to database
+    private void addCriminalImage() {
+        Intent intentaci = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUriaci = getOutputMediaFileUri2(MEDIA_TYPE_IMAGE);
+        intentaci.putExtra(MediaStore.EXTRA_OUTPUT, fileUriaci);
+        startActivityForResult(intentaci, CAMERA_CAPTURE_IMAGE_REQUEST_CODE_DATABASE);
+    }
+    public Uri getOutputMediaFileUri2(int type) {
 
+        return Uri.fromFile(getOutputMediaFile2(type));
+    }
+    @Nullable
+    private static File getOutputMediaFile2(int type) {
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory() + "/ProjectExpCriminalsGallery/");
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.d(TAG, "Oops! Failed to create "
+                        + " directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
+                Locale.getDefault()).format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator
+                    + "IMG_" + timeStamp + ".jpg");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
+
+//uploading criminals or object image to server
     private void captureImage() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
@@ -188,6 +230,23 @@ public class MainActivity extends AppCompatActivity
             }
 
         }
+        //if result is capturing i.e adding criminals image
+        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE_DATABASE) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(),
+                        "Images Sucessfully Added into Database !!", Toast.LENGTH_SHORT)
+                        .show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(),
+                        "User cancelled image capture", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+        }
     }
 
     private void launchUploadActivity() {
@@ -206,7 +265,7 @@ public class MainActivity extends AppCompatActivity
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d(TAG, "Oops! Failed create "
+                Log.d(TAG, "Oops! Failed to create "
                         + " directory");
                 return null;
             }
@@ -225,5 +284,7 @@ public class MainActivity extends AppCompatActivity
 
         return mediaFile;
     }
+
+
 
 }
