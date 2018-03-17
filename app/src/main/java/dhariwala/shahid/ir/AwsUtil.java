@@ -29,7 +29,7 @@ import java.util.List;
 public class AwsUtil {
 
     private static AmazonRekognition rekogClient = null;
-    private static final String poolId = "us-east-1:556299b0-8278-43d8-90d6-9f584fbf36ab";
+    private static final String poolId = ""; //ur respective pool id /  token will go here
     private static final Regions region = Regions.US_EAST_1;
 
     public static void init(Context context) {
